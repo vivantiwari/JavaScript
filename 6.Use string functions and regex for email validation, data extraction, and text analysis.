@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String and Regex</title>
+</head>
+<body>
+
+<h2>Email Validation and Text Analysis</h2>
+
+<label>Enter Email:</label>
+<input type="text" id="email"><br><br>
+
+<label>Enter Text:</label>
+<textarea id="text"></textarea><br><br>
+
+<button onclick="analyze()">Analyze</button>
+
+<div id="result"></div>
+
+<script>
+function analyze() {
+
+    let email = document.getElementById("email").value;
+    let text = document.getElementById("text").value;
+
+    // Email validation using regex
+    let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let emailResult = pattern.test(email);
+
+    // String functions
+    let upper = text.toUpperCase();
+    let lower = text.toLowerCase();
+    let words = text.trim() === "" ? [] : text.trim().split(/\s+/);
+
+    // Extract numbers using regex
+    let numbers = text.match(/\d+/g);
+
+    // Count vowels
+    let vowels = text.match(/[aeiou]/gi);
+
+    document.getElementById("result").innerHTML = `
+        Email: ${emailResult ? "Valid" : "Invalid"}<br>
+        Uppercase: ${upper}<br>
+        Lowercase: ${lower}<br>
+        Word Count: ${words.length}<br>
+        Character Count: ${text.length}<br>
+        Vowel Count: ${vowels ? vowels.length : 0}<br>
+        Extracted Numbers: ${numbers ? numbers.join(", ") : "None"}
+    `;
+}
+</script>
+
+</body>
+</html>
