@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Palindrome Checker</title>
+</head>
+<body>
+
+<h2>Palindrome Checker</h2>
+
+<input type="text" id="word" placeholder="Enter a word">
+
+<button onclick="checkPalindrome()">Check</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+// Global scope
+let message = "Palindrome Checker";
+
+// Function declaration
+function checkPalindrome() {
+
+    try {
+        let str = document.getElementById("word").value;
+
+        if (str.trim() === "") {
+            throw new Error("Please enter a word!");
+        }
+
+        // Arrow function
+        let cleanString = (text) =>
+            text.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+        // Function expression
+        let reverse = function(text) {
+            return text.split("").reverse().join("");
+        };
+
+        let original = cleanString(str);
+        let reversed = reverse(original);
+
+        if (original === reversed) {
+            document.getElementById("result").innerHTML =
+                str + " is a Palindrome!";
+        }
+        else {
+            document.getElementById("result").innerHTML =
+                str + " is Not a Palindrome!";
+        }
+
+    }
+    catch(error) {
+        document.getElementById("result").innerHTML =
+            error.message;
+    }
+}
+
+// Closure example
+function counter() {
+    let count = 0;
+
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+let countClick = counter();
+
+console.log("Closure:", countClick());
+console.log("Closure:", countClick());
+
+</script>
+
+</body>
+</html>
