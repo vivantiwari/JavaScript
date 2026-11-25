@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Introduction</title>
+</head>
+<body>
+
+<h2>User Information</h2>
+
+<p id="info"></p>
+<h3 id="welcome"></h3>
+
+<!-- Inline JavaScript -->
+<button onclick="alert('Welcome to JavaScript!')">
+    Click Me
+</button>
+
+<!-- Internal JavaScript -->
+<script>
+    let name = prompt("Enter your name:");
+    let age = prompt("Enter your age:");
+
+    document.getElementById("info").innerHTML =
+        "Name: " + name + "<br>Age: " + age;
+
+    document.getElementById("welcome").innerHTML =
+        `Welcome ${name}! Happy Learning JavaScript.`;
+
+    console.log("User Name:", name);
+    console.info("User Age:", age);
+    console.warn("This is a warning message");
+    console.error("This is an example error");
+    console.table({Name: name, Age: age});
+</script>
+
+<!-- External JavaScript -->
+<script src="external.js"></script>
+
+</body>
+</html>
