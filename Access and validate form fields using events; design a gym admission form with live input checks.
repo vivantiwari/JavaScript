@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gym Admission Form</title>
+</head>
+<body>
+
+<h2>Gym Admission Form</h2>
+
+<form id="gymForm">
+
+    Name:
+    <input type="text" id="name" required>
+    <span id="nameMsg"></span>
+    <br><br>
+
+    Age:
+    <input type="number" id="age" required>
+    <span id="ageMsg"></span>
+    <br><br>
+
+    Email:
+    <input type="email" id="email" required>
+    <span id="emailMsg"></span>
+    <br><br>
+
+    Phone:
+    <input type="text" id="phone" required>
+    <span id="phoneMsg"></span>
+    <br><br>
+
+    Membership:
+    <select id="membership">
+        <option value="">Select Plan</option>
+        <option>Monthly</option>
+        <option>Quarterly</option>
+        <option>Yearly</option>
+    </select>
+    <br><br>
+
+    <button type="submit">Submit</button>
+
+</form>
+
+<h3 id="result"></h3>
+
+<script>
+
+let nameField = document.getElementById("name");
+let ageField = document.getElementById("age");
+let emailField = document.getElementById("email");
+let phoneField = document.getElementById("phone");
+
+// Live name validation
+nameField.addEventListener("input", function() {
+    document.getElementById("nameMsg").textContent =
+        this.value.trim().length >= 3 ? "Valid" : "Enter at least 3 characters";
+});
+
+// Live age validation
+ageField.addEventListener("input", function() {
+    document.getElementById("ageMsg").textContent =
+        this.value >= 16 && this.value <= 80 ? "Valid" : "Age must be 16-80";
+});
+
+// Email validation
+emailField.addEventListener("input", function() {
+    let valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+    document.getElementById("emailMsg").textContent =
+        valid ? "Valid" : "Invalid email";
+});
+
+// Phone validation
+phoneField.addEventListener("input", function() {
+    document.getElementById("phoneMsg").textContent =
+        /^\d{10}$/.test(this.value) ? "Valid" : "Enter 10 digits";
+});
+
+// Form submit event
+document.getElementById("gymForm").addEventListener("submit",
+function(event) {
+
+    event.preventDefault();
+
+    let membership = document.getElementById("membership").value;
+
+    if (
+        nameField.value.trim().length < 3 ||
+        ageField.value < 16 || ageField.value > 80 ||
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value) ||
+        !/^\d{10}$/.test(phoneField.value) ||
+        membership === ""
+    ) {
+        alert("Please enter valid details!");
+        return;
+    }
+
+    document.getElementById("result").innerHTML =
+        "Gym Admission Successful! Welcome " +
+        nameField.value;
+});
+
+</script>
+
+</body>
+</html>
