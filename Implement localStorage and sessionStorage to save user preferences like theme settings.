@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Preferences</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .dark {
+            background-color: #222;
+            color: white;
+        }
+
+        .light {
+            background-color: white;
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Theme Settings</h2>
+
+<button onclick="setTheme('light')">Light Theme</button>
+
+<button onclick="setTheme('dark')">Dark Theme</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+// Load saved theme from localStorage
+let savedTheme = localStorage.getItem("theme") || "light";
+
+document.body.className = savedTheme;
+
+// Change theme
+function setTheme(theme) {
+
+    document.body.className = theme;
+
+    // Save permanently
+    localStorage.setItem("theme", theme);
+
+    // Save for current session
+    sessionStorage.setItem("currentTheme", theme);
+
+    document.getElementById("result").innerHTML =
+        "Selected Theme: " + theme;
+}
+
+// Display stored values
+console.log("Local Storage:",
+    localStorage.getItem("theme"));
+
+console.log("Session Storage:",
+    sessionStorage.getItem("currentTheme"));
+
+</script>
+
+</body>
+</html>
